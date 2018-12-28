@@ -1,9 +1,12 @@
 [submodule "hitobito"]
 	path = hitobito
+	branch = master
 	url = https://github.com/hitobito/hitobito.git
 [submodule "hitobito_youth"]
 	path = hitobito_youth
+	branch = master
 	url = https://github.com/hitobito/hitobito_youth.git
 [submodule "hitobito_cevi"]
 	path = hitobito_cevi
+	branch = master
 	url = https://github.com/hitobito/hitobito_cevi.git
