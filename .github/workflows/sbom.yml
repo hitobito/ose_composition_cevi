@@ -141,13 +141,13 @@ jobs:
           SCAN_DEBUG_MODE: debug
         run: |
           npm install -g @cyclonedx/cdxgen
-          cdxgen -o ./sbom-ruby.xml -t ruby .
+          cdxgen -o ./sbom-ruby.xml -t ruby --spec-version 1.4 .
 
       - name: 'Generate SBOM for npm dependencies'
         working-directory: hitobito
         run: |
           npm install -g @cyclonedx/cdxgen
-          cdxgen -o ./sbom-npm.xml -t npm .
+          cdxgen -o ./sbom-npm.xml -t npm --spec-version 1.4 .
 
       - name: 'Merge frontend and backend SBOMs'
         working-directory: hitobito
