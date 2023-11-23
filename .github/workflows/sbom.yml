@@ -13,4 +13,5 @@ jobs:
     with:
       project_name: hitobito-cevi
       dependency_track_url: ${{ vars.DEPENDENCY_TRACK_URL }}
+    secrets:
       dependency_track_api_key: ${{ secrets.DEPENDENCY_TRACK_API_KEY }}
