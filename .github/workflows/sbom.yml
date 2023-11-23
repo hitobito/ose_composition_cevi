@@ -140,13 +140,13 @@ jobs:
         env:
           SCAN_DEBUG_MODE: debug
         run: |
-          npm install -g @appthreat/cdxgen
+          npm install -g @cyclonedx/cdxgen
           cdxgen -o ./sbom-ruby.xml -t ruby .
 
       - name: 'Generate SBOM for npm dependencies'
         working-directory: hitobito
         run: |
-          npm install -g @appthreat/cdxgen
+          npm install -g @cyclonedx/cdxgen
           cdxgen -o ./sbom-npm.xml -t npm .
 
       - name: 'Merge frontend and backend SBOMs'
@@ -157,7 +157,6 @@ jobs:
       - name: 'Push merged SBOM to dependency track'
         env:
           PROJECT_NAME: hitobito-cevi
-          PROJECT_VERSION: ${{ github.ref_name }}
         working-directory: hitobito
         run: |
           curl --verbose -s --location --request POST ${{ secrets.DEPENDENCY_TRACK_URL }}/api/v1/bom \
@@ -165,7 +164,7 @@ jobs:
           --header "Content-Type: multipart/form-data" \
           --form "autoCreate=true" \
           --form "projectName=${PROJECT_NAME:-$GITHUB_REPOSITORY}" \
-          --form "projectVersion=${PROJECT_VERSION:-$GITHUB_REF}" \
+          --form "projectVersion=$GITHUB_REF" \
           --form "bom=@sbom.xml"
 
       - uses: actions/upload-artifact@v2
